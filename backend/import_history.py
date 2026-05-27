@@ -194,7 +194,15 @@ def import_day(db, aircraft: Aircraft, date: datetime) -> tuple[int, int]:
 
 
 def main():
-    filter_hexes = [h.lower() for h in sys.argv[1:]]
+    args = sys.argv[1:]
+    days_override = None
+    filter_hexes = []
+    for a in args:
+        if a.startswith('--days='):
+            days_override = int(a.split('=', 1)[1])
+        elif not a.startswith('--'):
+            filter_hexes.append(a.lower())
+    history_days = days_override if days_override is not None else HISTORY_DAYS
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
@@ -211,7 +219,7 @@ def main():
         for ac in aircraft_list:
             log.info("── %s  %s  (%s) ──", ac.registration, ac.label, ac.icao_hex)
             ac_f = ac_p = 0
-            for days_ago in range(0, HISTORY_DAYS + 1):
+            for days_ago in range(0, history_days + 1):
                 date = now - timedelta(days=days_ago)
                 f, p = import_day(db, ac, date)
                 ac_f += f
