@@ -25,10 +25,16 @@ def _ago(ts: Optional[datetime]) -> Optional[str]:
     return ts.isoformat() + "Z"
 
 
+_AIRCRAFT_ORDER = ['505c06', '505c09', '505c07', '505fa0', '505fa1', '505c04', '505c17']
+
 @router.get("/aircraft")
 def list_aircraft(db: Session = Depends(get_db)):
     result = []
-    for a in db.query(Aircraft).all():
+    aircraft_list = sorted(
+        db.query(Aircraft).all(),
+        key=lambda a: _AIRCRAFT_ORDER.index(a.icao_hex) if a.icao_hex in _AIRCRAFT_ORDER else 99
+    )
+    for a in aircraft_list:
         latest = (
             db.query(Position)
             .filter_by(aircraft_id=a.id)
