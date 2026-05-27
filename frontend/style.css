@@ -270,12 +270,14 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   .mob-tab.active { color: var(--text); }
 
   #flight-panel {
+    position: fixed;
     bottom: 72px;
     width: calc(100vw - 32px);
     left: 16px;
     right: 16px;
     max-height: 44vh;
     overflow-y: auto;
+    z-index: 1500;
   }
 
   #stats-bar { top: 8px; left: 8px; }
