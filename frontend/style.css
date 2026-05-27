@@ -505,7 +505,6 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 .support-email {
   font-size: 0.72rem;
   color: var(--muted);
-  font-style: italic;
 }
 .support-email:hover { color: var(--text); }
 
