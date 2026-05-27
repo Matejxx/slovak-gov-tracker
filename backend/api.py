@@ -128,6 +128,8 @@ def get_flight_track(flight_id: int, db: Session = Depends(get_db)):
             "start_time": _ago(flight.start_time),
             "end_time": _ago(flight.end_time),
             "is_active": flight.is_active,
+            "departure_airport": flight.departure_airport,
+            "arrival_airport": flight.arrival_airport,
             "aircraft": {
                 "icao_hex": flight.aircraft.icao_hex,
                 "registration": flight.aircraft.registration,

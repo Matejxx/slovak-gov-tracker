@@ -249,9 +249,17 @@ async function loadTrack(id) {
   const photoHtml = ac?.photo_url
     ? `<img src="${ac.photo_url}" style="width:100%;border-radius:6px;margin-bottom:10px;object-fit:cover;max-height:80px" loading="lazy">`
     : '';
+  const routeHtml = (f.departure_airport || f.arrival_airport)
+    ? `<div class="fp-route-row">
+        <span class="fp-airport">${f.departure_airport || '?'}</span>
+        <span class="fp-route-arrow">✈</span>
+        <span class="fp-airport">${f.arrival_airport || '?'}</span>
+       </div>`
+    : '';
   document.getElementById('flight-panel-body').innerHTML = `
     ${photoHtml}
     <div class="fp-title">${f.aircraft.registration || f.aircraft.icao_hex} · ${f.aircraft.label}</div>
+    ${routeHtml}
     <div class="fp-row"><span class="fp-label">Reg.</span><span class="fp-val">${f.aircraft.registration || f.aircraft.icao_hex}</span></div>
     ${f.flight_number ? `<div class="fp-row"><span class="fp-label">Let</span><span class="fp-val">${f.flight_number}</span></div>` : ''}
     <div class="fp-row"><span class="fp-label">Vzlet</span><span class="fp-val">${fmt(f.start_time)}</span></div>

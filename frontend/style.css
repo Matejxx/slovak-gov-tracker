@@ -249,7 +249,17 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   line-height: 1;
 }
 #close-panel:hover { color: var(--text); }
-.fp-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 10px; color: var(--text); }
+.fp-title { font-weight: 700; font-size: 0.88rem; margin-bottom: 8px; color: var(--text); }
+.fp-route-row {
+  display: flex; align-items: center; justify-content: center;
+  gap: 10px; margin-bottom: 10px;
+  background: var(--surface2); border-radius: 6px; padding: 7px 10px;
+}
+.fp-airport {
+  font-family: monospace; font-weight: 700; font-size: 1rem;
+  color: var(--text); letter-spacing: 0.04em;
+}
+.fp-route-arrow { color: var(--muted); font-size: 0.9rem; }
 .fp-row { display: flex; justify-content: space-between; margin-bottom: 5px; font-size: 0.78rem; }
 .fp-label { color: var(--muted); }
 .fp-val   { color: var(--text); font-family: monospace; font-weight: 500; }
