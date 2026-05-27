@@ -194,10 +194,13 @@ def import_day(db, aircraft: Aircraft, date: datetime) -> tuple[int, int]:
 
 
 def main():
+    filter_hexes = [h.lower() for h in sys.argv[1:]]
     Base.metadata.create_all(bind=engine)
     db = SessionLocal()
     try:
         aircraft_list = db.query(Aircraft).all()
+        if filter_hexes:
+            aircraft_list = [a for a in aircraft_list if a.icao_hex.lower() in filter_hexes]
         if not aircraft_list:
             log.error("No aircraft in DB — start the backend first (seeds aircraft on startup).")
             return
