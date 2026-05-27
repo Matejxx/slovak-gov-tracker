@@ -112,7 +112,10 @@ function updateMarkers(list) {
     const icon = planeIcon(pos.heading, a.is_airborne, a.category);
     const latlng = [pos.lat, pos.lon];
 
-    const tip = `<strong>${a.label}</strong><br>
+    const tipPhoto = a.photo_url
+      ? `<img src="${a.photo_url}" loading="lazy" style="display:block;width:180px;height:100px;object-fit:cover;border-radius:4px 4px 0 0;margin:-6px -10px 7px">`
+      : '';
+    const tip = `${tipPhoto}<strong>${a.label}</strong><br>
       ${a.registration || a.icao_hex}${a.type ? ' · ' + a.type : ''}<br>
       ${pos.altitude_ft ? pos.altitude_ft.toLocaleString() + ' ft' : ''}
       ${pos.ground_speed ? ' · ' + Math.round(pos.ground_speed) + ' kt' : ''}
