@@ -203,6 +203,9 @@ async function loadTrack(id) {
   const data = await apiFetch(`/flights/${id}/track`);
   if (!data) return;
 
+  // On mobile switch to map view to show the track
+  if (window.innerWidth <= 768) switchMobileTab('map');
+
   if (selectedFlightLayer) map.removeLayer(selectedFlightLayer);
   selectedFlightLayer = L.layerGroup().addTo(map);
 
@@ -300,6 +303,13 @@ document.getElementById('filter-icao').addEventListener('change', e => {
   flightFilter = e.target.value;
   loadFlights(false);
 });
+
+function switchMobileTab(tab) {
+  document.getElementById('tab-map').classList.toggle('active', tab === 'map');
+  document.getElementById('tab-list').classList.toggle('active', tab === 'list');
+  document.getElementById('sidebar').classList.toggle('mobile-show', tab === 'list');
+  if (tab === 'map') map.invalidateSize();
+}
 
 initMap();
 refreshAircraft().then(() => loadFlights(false));

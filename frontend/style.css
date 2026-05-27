@@ -219,6 +219,66 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   backdrop-filter: blur(6px);
 }
 
+/* ── Mobile ── */
+#mobile-nav { display: none; }
+
+@media (max-width: 768px) {
+  #app { flex-direction: column; }
+
+  #sidebar {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    bottom: 56px;
+    width: 100%;
+    z-index: 1500;
+    border-right: none;
+    overflow-y: auto;
+    flex-direction: column;
+  }
+  #sidebar.mobile-show { display: flex; }
+
+  #map-container {
+    width: 100%;
+    height: calc(100vh - 56px);
+  }
+
+  #mobile-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    height: 56px;
+    background: var(--bg);
+    border-top: 1px solid var(--border);
+    z-index: 2000;
+  }
+  .mob-tab {
+    flex: 1;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 0.78rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+  }
+  .mob-tab .tab-icon { font-size: 1.2rem; line-height: 1; }
+  .mob-tab.active { color: var(--text); }
+
+  #flight-panel {
+    bottom: 72px;
+    width: calc(100vw - 32px);
+    left: 16px;
+    right: 16px;
+  }
+
+  #stats-bar { top: 8px; left: 8px; }
+}
+
 /* Leaflet overrides */
 .leaflet-container { background: #0d1117; }
 .aircraft-tooltip {
