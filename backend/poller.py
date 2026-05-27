@@ -55,7 +55,7 @@ AIRCRAFT_CONFIG = [
     },
     {
         "icao_hex": "505fa0",
-        "registration": "9633",
+        "registration": "9513",
         "aircraft_type": "Bombardier Global 5000",
         "category": "plane",
         "label": "Bombardier Global 5000",
@@ -63,11 +63,11 @@ AIRCRAFT_CONFIG = [
     },
     {
         "icao_hex": "505fa1",
-        "registration": "9516",
+        "registration": "9633",
         "aircraft_type": "Bombardier Global 5000",
         "category": "plane",
         "label": "Bombardier Global 5000",
-        "photo_url": None,
+        "photo_url": "https://www.planes.cz/photo/1265/1265058/1265058_280.jpg",
     },
 ]
 
