@@ -75,6 +75,24 @@
     <button class="mob-tab" id="tab-list" onclick="switchMobileTab('list')">
       <span class="tab-icon">✈️</span>Lietadlá
     </button>
+    <button class="mob-tab" id="tab-support" onclick="showSupportModal()">
+      <span class="tab-icon bmc-tab-icon">
+        <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" class="bmc-tab-img" alt="">
+      </span>Podporiť
+    </button>
+  </div>
+
+  <div id="support-modal" class="hidden" onclick="if(event.target===this)closeSupportModal()">
+    <div id="support-modal-card">
+      <button id="close-support-modal" onclick="closeSupportModal()">×</button>
+      <a href="https://buymeacoffee.com/kamletifico" target="_blank" rel="noopener noreferrer" id="support-modal-link">
+        <div class="bmc-logo-wrap bmc-logo-lg">
+          <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy Me a Coffee" class="bmc-icon-lg">
+        </div>
+        <span class="bmc-main bmc-main-lg">Podporiť sledovanie</span>
+        <span class="bmc-sub bmc-sub-lg">buymeacoffee.com/kamletifico</span>
+      </a>
+    </div>
   </div>
 
   <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>

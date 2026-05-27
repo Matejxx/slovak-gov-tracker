@@ -362,6 +362,13 @@ function switchMobileTab(tab) {
   if (tab === 'map') map.invalidateSize();
 }
 
+function showSupportModal() {
+  document.getElementById('support-modal').classList.remove('hidden');
+}
+function closeSupportModal() {
+  document.getElementById('support-modal').classList.add('hidden');
+}
+
 initMap();
 refreshAircraft().then(() => loadFlights(false));
 refreshStats();
