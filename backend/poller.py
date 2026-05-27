@@ -59,7 +59,7 @@ AIRCRAFT_CONFIG = [
         "aircraft_type": "Bombardier Global 5000",
         "category": "plane",
         "label": "Bombardier Global 5000",
-        "photo_url": "https://t.plnspttrs.net/48971/1790915_e9a96cb2d4_280.jpg",
+        "photo_url": "https://cdn.plnspttrs.net/48971/9513-slovak-air-force-bombardier-global-5000-bd-700-1a11_PlanespottersNet_1790915_e9a96cb2d4_o.jpg",
     },
     {
         "icao_hex": "505fa1",
@@ -67,7 +67,7 @@ AIRCRAFT_CONFIG = [
         "aircraft_type": "Bombardier Global 5000",
         "category": "plane",
         "label": "Bombardier Global 5000",
-        "photo_url": "https://t.plnspttrs.net/38522/1778866_8eba5f862f_280.jpg",
+        "photo_url": "https://cdn.plnspttrs.net/38522/9633-slovak-air-force-bombardier-global-5000-bd-700-1a11_PlanespottersNet_1778866_8eba5f862f_o.jpg",
     },
 ]
 
