@@ -227,10 +227,10 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 /* Support bar */
 #support-bar {
   position: absolute;
-  top: 0; left: 0; right: 0;
+  bottom: 0; left: 0; right: 0;
   height: 52px;
   background: rgba(13,17,23,.93);
-  border-bottom: 1px solid var(--border);
+  border-top: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -260,7 +260,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 /* Flight detail panel */
 #flight-panel {
   position: absolute;
-  bottom: 24px;
+  bottom: 60px;
   right: 16px;
   width: 260px;
   background: rgba(13,17,23,.93);
@@ -301,7 +301,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 /* Stats bar */
 #stats-bar {
   position: absolute;
-  top: 62px; left: 10px;
+  top: 10px; right: 10px;
   display: flex;
   gap: 8px;
   z-index: 900;
@@ -377,7 +377,8 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
     z-index: 1500;
   }
 
-  #stats-bar { top: 62px; left: 8px; }
+  #support-bar { display: none; }
+  #stats-bar { top: 8px; right: 8px; left: auto; }
 }
 
 /* Leaflet overrides */
