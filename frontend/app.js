@@ -51,11 +51,23 @@ function planeIcon(heading, airborne, category) {
 
 // ── Aircraft ──────────────────────────────────────────────────────────────────
 
+function _acFilterItemHtml(icao, photoUrl, emoji, reg, label) {
+  const photo = photoUrl
+    ? `<img class="acf-photo" src="${photoUrl}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="acf-placeholder" style="display:none">${emoji}</div>`
+    : `<div class="acf-placeholder">${emoji}</div>`;
+  return `<div class="acf-item${flightFilter === icao ? ' selected' : ''}" data-icao="${icao}" onclick="selectAcFilter('${icao}')">
+    ${photo}
+    <div class="acf-info"><div class="acf-reg">${reg}</div><div class="acf-name">${label}</div></div>
+  </div>`;
+}
+
 function renderAircraftList(list) {
   const el = document.getElementById('aircraft-list');
-  const sel = document.getElementById('filter-icao');
+  const filterList = document.getElementById('acf-list');
   el.innerHTML = '';
-  sel.innerHTML = '<option value="">Všetky lietadlá</option>';
+
+  // Rebuild filter dropdown
+  filterList.innerHTML = _acFilterItemHtml('', null, '✈️', 'Všetky', 'Zobraziť všetky lietadlá');
 
   list.forEach(a => {
     const pos = a.latest_position;
@@ -65,7 +77,7 @@ function renderAircraftList(list) {
     else if (a.is_airborne){ cls = 'airborne';  badge = 'badge-air'; badgeText = 'Letí'; }
     else                   { cls = 'grounded';  badge = 'badge-gnd'; badgeText = 'Zem'; }
 
-    const reg  = a.registration || a.icao_hex;
+    const reg   = a.registration || a.icao_hex;
     const emoji = a.category === 'helicopter' ? '🚁' : '✈️';
     const photoEl = a.photo_url
       ? `<img class="ac-photo" src="${a.photo_url}" alt="${reg}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">`
@@ -85,14 +97,11 @@ function renderAircraftList(list) {
     card.addEventListener('click', () => focusAircraft(a.icao_hex));
     el.appendChild(card);
 
-    const opt = document.createElement('option');
-    opt.value = a.icao_hex;
-    opt.textContent = `${a.label} (${reg})`;
-    sel.appendChild(opt);
+    filterList.innerHTML += _acFilterItemHtml(a.icao_hex, a.photo_url, emoji, reg, a.label);
   });
 
-  // Restore active filter after dropdown re-render
-  if (flightFilter) sel.value = flightFilter;
+  // Restore toggle button label after re-render
+  _updateAcFilterToggle();
 }
 
 function updateMarkers(list) {
@@ -124,12 +133,7 @@ function updateMarkers(list) {
 function focusAircraft(icao) {
   const m = aircraftMarkers[icao];
   if (m) { map.setView(m.getLatLng(), 9, { animate: true }); m.openTooltip(); }
-
-  // Filter flight history to this aircraft
-  flightFilter = icao;
-  const sel = document.getElementById('filter-icao');
-  sel.value = icao;
-  loadFlights(false);
+  selectAcFilter(icao);
 }
 
 // ── Flights ───────────────────────────────────────────────────────────────────
@@ -299,9 +303,45 @@ document.getElementById('close-panel').addEventListener('click', () => {
 
 document.getElementById('load-more').addEventListener('click', () => loadFlights(true));
 
-document.getElementById('filter-icao').addEventListener('change', e => {
-  flightFilter = e.target.value;
+// ── Aircraft filter dropdown ──────────────────────────────────────────────────
+
+function _updateAcFilterToggle() {
+  const ac = list_aircraft_cache.find(a => a.icao_hex === flightFilter);
+  const cur = document.getElementById('acf-current');
+  if (ac) {
+    const emoji = ac.category === 'helicopter' ? '🚁' : '✈️';
+    const photo = ac.photo_url
+      ? `<img class="acf-toggle-photo" src="${ac.photo_url}" loading="lazy" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'"><div class="acf-toggle-placeholder" style="display:none">${emoji}</div>`
+      : `<div class="acf-toggle-placeholder">${emoji}</div>`;
+    cur.innerHTML = `${photo}<span class="acf-toggle-label">${ac.registration || ac.icao_hex} · ${ac.label}</span>`;
+  } else {
+    cur.innerHTML = `<div class="acf-toggle-placeholder">✈️</div><span class="acf-toggle-label">Všetky lietadlá</span>`;
+  }
+}
+
+function toggleAcFilter() {
+  const list = document.getElementById('acf-list');
+  const btn  = document.getElementById('acf-toggle');
+  const open = list.classList.toggle('acf-open');
+  btn.classList.toggle('acf-open', open);
+}
+
+function selectAcFilter(icao) {
+  flightFilter = icao;
+  _updateAcFilterToggle();
+  document.getElementById('acf-list').classList.remove('acf-open');
+  document.getElementById('acf-toggle').classList.remove('acf-open');
+  document.querySelectorAll('.acf-item').forEach(el =>
+    el.classList.toggle('selected', el.dataset.icao === icao));
   loadFlights(false);
+}
+
+document.addEventListener('click', e => {
+  const wrapper = document.getElementById('acf-wrapper');
+  if (wrapper && !wrapper.contains(e.target)) {
+    document.getElementById('acf-list').classList.remove('acf-open');
+    document.getElementById('acf-toggle').classList.remove('acf-open');
+  }
 });
 
 function switchMobileTab(tab) {

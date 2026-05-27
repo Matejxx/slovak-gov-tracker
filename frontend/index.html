@@ -28,9 +28,16 @@
 
       <div class="section">
         <div class="section-title">História letov</div>
-        <select id="filter-icao">
-          <option value="">Všetky lietadlá</option>
-        </select>
+        <div id="acf-wrapper">
+          <div id="acf-toggle" onclick="toggleAcFilter()">
+            <div id="acf-current">
+              <div class="acf-toggle-placeholder">✈️</div>
+              <span class="acf-toggle-label">Všetky lietadlá</span>
+            </div>
+            <span class="acf-chevron">▾</span>
+          </div>
+          <div id="acf-list"></div>
+        </div>
         <div id="flights-list"></div>
         <button id="load-more" style="display:none">Načítať ďalšie</button>
       </div>
