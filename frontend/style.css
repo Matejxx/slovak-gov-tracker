@@ -377,7 +377,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
     z-index: 1500;
   }
 
-  #stats-bar { top: 8px; left: 8px; }
+  #stats-bar { top: 62px; left: 8px; }
 }
 
 /* Leaflet overrides */
