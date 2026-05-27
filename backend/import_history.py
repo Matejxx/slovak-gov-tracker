@@ -15,6 +15,7 @@ from typing import Optional
 sys.path.insert(0, ".")
 from database import SessionLocal, engine
 from models import Base, Aircraft, Flight, Position
+from airports import nearest_iata
 
 logging.basicConfig(
     level=logging.INFO,
@@ -111,9 +112,9 @@ def pick_callsign(seg: list[dict]) -> Optional[str]:
     return None
 
 
-def already_imported(db, aircraft_id: int, start: datetime) -> bool:
+def find_existing_flight(db, aircraft_id: int, start: datetime) -> Optional[Flight]:
     window = timedelta(minutes=10)
-    return bool(
+    return (
         db.query(Flight)
         .filter(
             Flight.aircraft_id == aircraft_id,
@@ -137,16 +138,29 @@ def import_day(db, aircraft: Aircraft, date: datetime) -> tuple[int, int]:
     for seg in segments:
         start = seg[0]["timestamp"]
         end   = seg[-1]["timestamp"]
+        dep   = nearest_iata(seg[0]["lat"],  seg[0]["lon"])
+        arr   = nearest_iata(seg[-1]["lat"], seg[-1]["lon"])
 
-        if already_imported(db, aircraft.id, start):
+        existing = find_existing_flight(db, aircraft.id, start)
+        if existing:
+            # Back-fill airports on already-imported flights if missing
+            changed = False
+            if not existing.departure_airport and dep:
+                existing.departure_airport = dep; changed = True
+            if not existing.arrival_airport and arr:
+                existing.arrival_airport = arr;   changed = True
+            if changed:
+                db.commit()
             continue
 
         flight = Flight(
-            aircraft_id      = aircraft.id,
-            flight_number    = pick_callsign(seg),
-            start_time       = start,
-            end_time         = end,
-            is_active        = False,
+            aircraft_id       = aircraft.id,
+            flight_number     = pick_callsign(seg),
+            start_time        = start,
+            end_time          = end,
+            is_active         = False,
+            departure_airport = dep,
+            arrival_airport   = arr,
         )
         db.add(flight)
         db.flush()

@@ -8,6 +8,7 @@ from sqlalchemy.orm import Session
 
 from database import SessionLocal
 from models import Aircraft, Flight, Position
+from airports import nearest_iata
 
 logger = logging.getLogger(__name__)
 
@@ -133,15 +134,17 @@ def process_position(db: Session, aircraft: Aircraft, data: dict):
                 flight_number=flight_num,
                 start_time=now,
                 is_active=True,
+                departure_airport=nearest_iata(lat, lon),
             )
             db.add(active_flight)
             db.flush()
-            logger.info("Flight started: %s (%s)", aircraft.icao_hex, aircraft.label)
+            logger.info("Flight started: %s (%s) dep=%s", aircraft.icao_hex, aircraft.label, active_flight.departure_airport)
     else:
         if active_flight:
             active_flight.is_active = False
             active_flight.end_time = now
-            logger.info("Flight landed: %s", aircraft.icao_hex)
+            active_flight.arrival_airport = nearest_iata(lat, lon)
+            logger.info("Flight landed: %s arr=%s", aircraft.icao_hex, active_flight.arrival_airport)
             active_flight = None
 
     pos = Position(
