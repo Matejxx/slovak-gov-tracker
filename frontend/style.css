@@ -14,10 +14,12 @@
   --sidebar-w: 320px;
 }
 
-html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; display: flex; flex-direction: column; }
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; }
 
 #gov-banner {
-  flex-shrink: 0;
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 3000;
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   padding: 6px 16px;
@@ -25,11 +27,15 @@ html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(-
   font-size: 0.72rem;
   color: var(--muted);
   line-height: 1.4;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 #gov-banner a, #gov-banner-ref { color: #58a6ff; text-decoration: none; }
 #gov-banner a:hover { text-decoration: underline; }
 
-#app { display: flex; flex: 1; min-height: 0; }
+#app { display: flex; height: 100vh; padding-top: 32px; }
 
 /* ── Sidebar ── */
 #sidebar {
@@ -420,6 +426,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   #support-bar { display: none; }
   #stats-bar { top: 8px; right: 8px; left: auto; }
   #gov-banner { display: none; }
+  #app { padding-top: 0; }
 }
 
 /* ── Support modal (mobile) ── */
