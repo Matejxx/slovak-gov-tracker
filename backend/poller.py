@@ -100,6 +100,12 @@ def process_position(db: Session, aircraft: Aircraft, data: dict):
         return
 
     on_ground = bool(data.get("gnd", True))
+    # Override: if altitude clearly shows airborne, don't trust a stale 'gnd' flag
+    alt_raw = data.get("alt_baro")
+    if on_ground and alt_raw and alt_raw != "ground":
+        alt_ft = _safe_int(alt_raw)
+        if alt_ft and alt_ft > 1000:
+            on_ground = False
     now = datetime.utcnow()
 
     # Opportunistically update registration / type
