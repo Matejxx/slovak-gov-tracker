@@ -234,24 +234,42 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
   z-index: 900;
-  text-decoration: none;
   backdrop-filter: blur(6px);
+}
+
+.support-btn {
+  display: flex; align-items: center; gap: 12px;
+  height: 100%; padding: 0 22px;
+  text-decoration: none;
   transition: background 0.15s;
 }
-#support-bar:hover { background: rgba(13,17,23,.99); }
+.support-btn:hover { background: rgba(255,255,255,.05); }
+.support-btn:hover .bmc-logo-wrap,
+.support-btn:hover .pp-logo-wrap { transform: scale(1.08); }
+
+.support-sep {
+  width: 1px; height: 28px;
+  background: var(--border); flex-shrink: 0;
+}
 
 .bmc-logo-wrap {
   width: 36px; height: 36px;
   background: #FFDD00;
   border-radius: 50%;
   display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  transition: transform 0.15s;
+  flex-shrink: 0; transition: transform 0.15s;
 }
-#support-bar:hover .bmc-logo-wrap { transform: scale(1.08); }
 .bmc-icon { height: 22px; display: block; }
+
+.pp-logo-wrap {
+  width: 36px; height: 36px;
+  background: #0070ba;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; transition: transform 0.15s;
+}
+.pp-icon { height: 22px; display: block; }
 
 .bmc-text { display: flex; flex-direction: column; }
 .bmc-main { font-size: 0.83rem; font-weight: 700; color: var(--text); }
@@ -366,14 +384,14 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   .mob-tab .tab-icon { font-size: 1.2rem; line-height: 1; }
   .mob-tab.active { color: var(--text); }
 
-  /* BMC tab icon */
+  /* BMC tab icon — size matches emoji height so text aligns */
   .bmc-tab-icon {
-    display: flex; align-items: center; justify-content: center;
-    width: 24px; height: 24px;
+    display: inline-flex; align-items: center; justify-content: center;
+    width: 1.2rem; height: 1.2rem;
     background: #FFDD00; border-radius: 50%;
-    flex-shrink: 0;
+    flex-shrink: 0; vertical-align: middle;
   }
-  .bmc-tab-img { height: 15px; display: block; }
+  .bmc-tab-img { height: 0.75rem; display: block; }
 
   #flight-panel {
     position: fixed;
@@ -407,9 +425,9 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
   background: var(--surface);
   border: 1px solid var(--border);
   border-radius: 16px;
-  padding: 40px 48px 36px;
-  text-align: center;
+  padding: 40px 28px 32px;
   position: relative;
+  min-width: 280px;
 }
 #close-support-modal {
   position: absolute;
@@ -420,15 +438,40 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 }
 #close-support-modal:hover { color: var(--text); }
 
-#support-modal-link {
-  display: flex; flex-direction: column;
-  align-items: center; gap: 16px;
-  text-decoration: none;
+#support-modal-title {
+  font-size: 0.7rem; font-weight: 600;
+  text-transform: uppercase; letter-spacing: 0.08em;
+  color: var(--muted); text-align: center;
+  margin-bottom: 20px;
 }
-.bmc-logo-lg { width: 64px; height: 64px; }
-.bmc-icon-lg { height: 40px; display: block; }
-.bmc-main-lg { font-size: 1.1rem; font-weight: 700; color: var(--text); }
-.bmc-sub-lg  { font-size: 0.85rem; color: #58a6ff; }
+#support-modal-btns {
+  display: flex; gap: 12px;
+}
+.modal-support-btn {
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  text-decoration: none;
+  padding: 18px 16px 14px;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  background: var(--surface2);
+  flex: 1;
+  transition: border-color 0.15s, background 0.15s;
+}
+.modal-support-btn:hover {
+  border-color: #58a6ff;
+  background: rgba(88,166,255,.07);
+}
+.modal-support-btn:hover .bmc-logo-lg,
+.modal-support-btn:hover .pp-logo-lg { transform: scale(1.06); }
+
+.bmc-logo-lg { width: 56px; height: 56px; transition: transform 0.15s; }
+.bmc-icon-lg { height: 34px; display: block; }
+.pp-logo-lg  { width: 56px; height: 56px; transition: transform 0.15s; }
+.pp-icon-lg  { height: 34px; display: block; }
+.modal-btn-label {
+  font-size: 0.82rem; font-weight: 700; color: var(--text);
+}
 
 /* Leaflet overrides */
 .leaflet-container { background: #e8e4d8; }

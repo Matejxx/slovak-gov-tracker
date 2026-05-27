@@ -44,15 +44,26 @@
     </div>
 
     <div id="map-container">
-      <a id="support-bar" href="https://buymeacoffee.com/kamletifico" target="_blank" rel="noopener noreferrer">
-        <div class="bmc-logo-wrap">
-          <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy Me a Coffee" class="bmc-icon">
-        </div>
-        <div class="bmc-text">
-          <span class="bmc-main">Podporiť sledovanie</span>
-          <span class="bmc-sub">buymeacoffee.com/kamletifico</span>
-        </div>
-      </a>
+      <div id="support-bar">
+        <a href="https://buymeacoffee.com/kamletifico" target="_blank" rel="noopener noreferrer" class="support-btn">
+          <div class="bmc-logo-wrap">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="" class="bmc-icon">
+          </div>
+          <div class="bmc-text">
+            <span class="bmc-main">Podporiť sledovanie</span>
+            <span class="bmc-sub">buymeacoffee.com/kamletifico</span>
+          </div>
+        </a>
+        <div class="support-sep"></div>
+        <a href="https://www.paypal.com/ncp/payment/MCHD5LD76TKC6" target="_blank" rel="noopener noreferrer" class="support-btn">
+          <div class="pp-logo-wrap">
+            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="" class="pp-icon">
+          </div>
+          <div class="bmc-text">
+            <span class="bmc-main">PayPal</span>
+          </div>
+        </a>
+      </div>
       <div id="map"></div>
 
       <div id="flight-panel" class="hidden">
@@ -85,13 +96,21 @@
   <div id="support-modal" class="hidden" onclick="if(event.target===this)closeSupportModal()">
     <div id="support-modal-card">
       <button id="close-support-modal" onclick="closeSupportModal()">×</button>
-      <a href="https://buymeacoffee.com/kamletifico" target="_blank" rel="noopener noreferrer" id="support-modal-link">
-        <div class="bmc-logo-wrap bmc-logo-lg">
-          <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="Buy Me a Coffee" class="bmc-icon-lg">
-        </div>
-        <span class="bmc-main bmc-main-lg">Podporiť sledovanie</span>
-        <span class="bmc-sub bmc-sub-lg">buymeacoffee.com/kamletifico</span>
-      </a>
+      <div id="support-modal-title">Podporiť sledovanie</div>
+      <div id="support-modal-btns">
+        <a href="https://buymeacoffee.com/kamletifico" target="_blank" rel="noopener noreferrer" class="modal-support-btn">
+          <div class="bmc-logo-wrap bmc-logo-lg">
+            <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="" class="bmc-icon-lg">
+          </div>
+          <span class="modal-btn-label">Buy Me a Coffee</span>
+        </a>
+        <a href="https://www.paypal.com/ncp/payment/MCHD5LD76TKC6" target="_blank" rel="noopener noreferrer" class="modal-support-btn">
+          <div class="pp-logo-wrap pp-logo-lg">
+            <img src="https://www.paypalobjects.com/webstatic/icon/pp258.png" alt="" class="pp-icon-lg">
+          </div>
+          <span class="modal-btn-label">PayPal</span>
+        </a>
+      </div>
     </div>
   </div>
 
