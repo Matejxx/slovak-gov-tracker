@@ -274,6 +274,8 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
     width: calc(100vw - 32px);
     left: 16px;
     right: 16px;
+    max-height: 44vh;
+    overflow-y: auto;
   }
 
   #stats-bar { top: 8px; left: 8px; }
