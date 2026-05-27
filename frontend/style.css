@@ -502,18 +502,12 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 #gov-modal-note a { color: #58a6ff; text-decoration: none; }
 #gov-modal-note a:hover { text-decoration: underline; }
 
-#sidebar-footer {
-  padding: 10px 12px;
-  border-top: 1px solid var(--border);
-  margin-top: auto;
-  flex-shrink: 0;
-}
-.sidebar-email {
-  font-size: 0.68rem;
+.support-email {
+  font-size: 0.72rem;
   color: var(--muted);
-  text-decoration: none;
+  font-style: italic;
 }
-.sidebar-email:hover { color: var(--text); }
+.support-email:hover { color: var(--text); }
 
 .modal-email {
   display: block;
