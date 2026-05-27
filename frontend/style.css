@@ -14,9 +14,22 @@
   --sidebar-w: 320px;
 }
 
-html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; }
+html, body { height: 100%; overflow: hidden; background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; font-size: 13px; display: flex; flex-direction: column; }
 
-#app { display: flex; height: 100vh; }
+#gov-banner {
+  flex-shrink: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 6px 16px;
+  text-align: center;
+  font-size: 0.72rem;
+  color: var(--muted);
+  line-height: 1.4;
+}
+#gov-banner a, #gov-banner-ref { color: #58a6ff; text-decoration: none; }
+#gov-banner a:hover { text-decoration: underline; }
+
+#app { display: flex; flex: 1; min-height: 0; }
 
 /* ── Sidebar ── */
 #sidebar {
@@ -406,6 +419,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 
   #support-bar { display: none; }
   #stats-bar { top: 8px; right: 8px; left: auto; }
+  #gov-banner { display: none; }
 }
 
 /* ── Support modal (mobile) ── */
@@ -472,6 +486,15 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 .modal-btn-label {
   font-size: 0.82rem; font-weight: 700; color: var(--text);
 }
+#gov-modal-note {
+  margin-top: 16px;
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-align: center;
+  line-height: 1.5;
+}
+#gov-modal-note a { color: #58a6ff; text-decoration: none; }
+#gov-modal-note a:hover { text-decoration: underline; }
 
 /* Leaflet overrides */
 .leaflet-container { background: #e8e4d8; }
