@@ -1,0 +1,18 @@
+# Environment & secrets
+.env
+
+# SQLite dev database
+*.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# macOS
+.DS_Store
+
+# Docker volumes (never commit data)
+postgres_data/

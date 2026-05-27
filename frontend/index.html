@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sledovanie vládnych lietadiel SR</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+
+    <div id="sidebar">
+      <div id="sidebar-header">
+        <div id="header-title">
+          <span class="header-flag">🇸🇰</span>
+          <div>
+            <h1>Vládne lietadlá SR</h1>
+            <p id="last-update">Načítavam…</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">Sledované lietadlá</div>
+        <div id="aircraft-list"></div>
+      </div>
+
+      <div class="section">
+        <div class="section-title">História letov</div>
+        <select id="filter-icao">
+          <option value="">Všetky lietadlá</option>
+        </select>
+        <div id="flights-list"></div>
+        <button id="load-more" style="display:none">Načítať ďalšie</button>
+      </div>
+    </div>
+
+    <div id="map-container">
+      <div id="map"></div>
+
+      <div id="flight-panel" class="hidden">
+        <button id="close-panel">×</button>
+        <div id="flight-panel-body"></div>
+      </div>
+
+      <div id="stats-bar">
+        <span id="stat-flights"></span>
+        <span id="stat-positions"></span>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
