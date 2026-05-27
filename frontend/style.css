@@ -228,25 +228,34 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 #support-bar {
   position: absolute;
   top: 0; left: 0; right: 0;
-  height: 38px;
+  height: 52px;
   background: rgba(13,17,23,.93);
   border-bottom: 1px solid var(--border);
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
+  gap: 12px;
   z-index: 900;
   text-decoration: none;
-  color: var(--muted);
-  font-size: 0.78rem;
-  font-weight: 600;
-  letter-spacing: 0.02em;
   backdrop-filter: blur(6px);
-  transition: color 0.15s, background 0.15s;
+  transition: background 0.15s;
 }
-#support-bar:hover { color: #f9c74f; background: rgba(13,17,23,.99); }
-.bmc-icon { height: 20px; opacity: 0.75; transition: opacity 0.15s; }
-#support-bar:hover .bmc-icon { opacity: 1; }
+#support-bar:hover { background: rgba(13,17,23,.99); }
+
+.bmc-logo-wrap {
+  width: 36px; height: 36px;
+  background: #FFDD00;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.15s;
+}
+#support-bar:hover .bmc-logo-wrap { transform: scale(1.08); }
+.bmc-icon { height: 22px; display: block; }
+
+.bmc-text { display: flex; flex-direction: column; }
+.bmc-main { font-size: 0.83rem; font-weight: 700; color: var(--text); }
+.bmc-sub   { font-size: 0.68rem; color: #58a6ff; margin-top: 1px; }
 
 /* Flight detail panel */
 #flight-panel {
@@ -292,7 +301,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 /* Stats bar */
 #stats-bar {
   position: absolute;
-  top: 48px; left: 10px;
+  top: 62px; left: 10px;
   display: flex;
   gap: 8px;
   z-index: 900;
