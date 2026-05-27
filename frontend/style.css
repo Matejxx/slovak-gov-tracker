@@ -284,7 +284,7 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 }
 
 /* Leaflet overrides */
-.leaflet-container { background: #e8e0d8; }
+.leaflet-container { background: #e8e4d8; }
 .aircraft-tooltip {
   background: rgba(13,17,23,.92) !important;
   border: 1px solid var(--border) !important;
