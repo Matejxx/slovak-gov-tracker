@@ -207,11 +207,10 @@ h1 { font-size: 0.95rem; font-weight: 700; color: var(--text); }
 .fl-item.active-flight { border-color: var(--airborne); }
 
 .fl-top { display: flex; justify-content: space-between; align-items: center; }
-.fl-reg { font-weight: 600; font-family: monospace; font-size: 0.82rem; }
-.fl-num { font-size: 0.72rem; color: var(--muted); font-family: monospace; }
-.fl-time { font-size: 0.7rem; color: var(--muted); margin-top: 3px; }
+.fl-label { font-weight: 600; font-size: 0.88rem; }
+.fl-num { font-size: 0.72rem; color: var(--muted); font-family: monospace; flex-shrink: 0; }
+.fl-meta { font-size: 0.7rem; color: var(--muted); margin-top: 3px; font-family: monospace; }
 .fl-dur  { font-size: 0.68rem; color: var(--muted); margin-top: 1px; }
-.fl-type  { font-size: 0.7rem; color: var(--muted); margin-top: 1px; }
 .fl-route { font-size: 0.72rem; color: #58a6ff; font-family: monospace; font-weight: 600; }
 
 .dot {

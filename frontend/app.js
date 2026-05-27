@@ -170,14 +170,14 @@ function renderFlights(flights, append) {
     const route = (f.departure_airport && f.arrival_airport)
       ? `<span class="fl-route">${f.departure_airport} → ${f.arrival_airport}</span>`
       : (f.departure_airport ? `<span class="fl-route">${f.departure_airport} →</span>` : '');
-    const acType = list_aircraft_cache.find(a => a.icao_hex === f.aircraft.icao_hex)?.label || '';
+    const acLabel = list_aircraft_cache.find(a => a.icao_hex === f.aircraft.icao_hex)?.label || f.aircraft.registration || f.aircraft.icao_hex;
+    const reg = f.aircraft.registration || f.aircraft.icao_hex;
     div.innerHTML = `
       <div class="fl-top">
-        <span class="fl-reg">${f.is_active ? '<span class="dot"></span>' : ''}${f.aircraft.registration || f.aircraft.icao_hex}</span>
+        <span class="fl-label">${f.is_active ? '<span class="dot"></span>' : ''}${acLabel}</span>
         ${f.flight_number ? `<span class="fl-num">${f.flight_number}</span>` : ''}
       </div>
-      ${acType ? `<div class="fl-type">${acType}</div>` : ''}
-      <div class="fl-time">${fmt(f.start_time)}${f.duration_minutes ? ' · ' + fmtDur(f.duration_minutes) : ''}</div>
+      <div class="fl-meta">${reg} · ${fmt(f.start_time)}${f.duration_minutes ? ' · ' + fmtDur(f.duration_minutes) : ''}</div>
       ${route ? `<div class="fl-dur">${route}</div>` : ''}`;
     div.addEventListener('click', () => loadTrack(f.id));
     el.appendChild(div);
