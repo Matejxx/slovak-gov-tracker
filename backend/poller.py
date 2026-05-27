@@ -53,6 +53,22 @@ AIRCRAFT_CONFIG = [
         "label": "AgustaWestland AW189",
         "photo_url": "https://t.plnspttrs.net/41353/1720967_2d8e5f4f51_280.jpg",
     },
+    {
+        "icao_hex": "505fa0",
+        "registration": "9633",
+        "aircraft_type": "Bombardier Global 5000",
+        "category": "plane",
+        "label": "Bombardier Global 5000",
+        "photo_url": None,
+    },
+    {
+        "icao_hex": "505fa1",
+        "registration": "9516",
+        "aircraft_type": "Bombardier Global 5000",
+        "category": "plane",
+        "label": "Bombardier Global 5000",
+        "photo_url": None,
+    },
 ]
 
 POLL_INTERVAL = 30       # seconds between polls
