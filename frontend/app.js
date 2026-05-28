@@ -21,23 +21,31 @@ function initMap() {
 }
 
 function planeIcon(heading, airborne, category) {
-  const color = airborne ? '#39d353' : '#4a5568';
-  const shadow = airborne ? '0 0 6px rgba(57,211,83,.7)' : 'none';
-  const rot = category === 'helicopter' ? (heading || 0) : (heading || 0) - 90;
+  const color = airborne ? '#39d353' : '#6b7280';
+  const shadow = airborne ? '0 0 7px rgba(57,211,83,.85)' : 'none';
+  const rot = (heading || 0) + (category === 'helicopter' ? 0 : -90);
 
+  // Airplane: nose points east in SVG → rotated to heading
+  // Helicopter: nose points north in SVG → rotated to heading
   const shape = category === 'helicopter'
-    ? `<svg width="28" height="28" viewBox="0 0 28 28">
+    ? `<svg viewBox="0 0 28 28" width="28" height="28">
         <g transform="rotate(${rot},14,14)">
-          <rect x="2" y="12" width="24" height="2.5" rx="1.2" fill="${color}"/>
-          <ellipse cx="14" cy="16" rx="5" ry="4" fill="${color}"/>
-          <path d="M19 16 Q24 18 26 22" stroke="${color}" stroke-width="2" fill="none"/>
-          <rect x="24" y="20" width="3" height="1.5" rx=".7" fill="${color}"/>
+          <rect x="3" y="12.5" width="22" height="2.5" rx="1.2" fill="${color}"/>
+          <circle cx="14" cy="13.8" r="2" fill="${color}"/>
+          <ellipse cx="14" cy="18" rx="4" ry="5.5" fill="${color}"/>
+          <rect x="13" y="22" width="2.5" height="4.5" rx="1" fill="${color}"/>
+          <rect x="10" y="25.5" width="8" height="2" rx="1" fill="${color}"/>
         </g>
       </svg>`
-    : `<svg width="28" height="28" viewBox="0 0 28 28">
+    : `<svg viewBox="0 0 28 28" width="28" height="28">
         <g transform="rotate(${rot},14,14)">
-          <path d="M14 4 L17 13 L26 15 L17 17 L18 23 L14 21 L10 23 L11 17 L2 15 L11 13 Z"
-                fill="${color}" stroke="rgba(255,255,255,.3)" stroke-width=".8"/>
+          <path d="M23 14
+                   L18 12 L15 4 L13 4 L14 12
+                   L9 11 L8 9 L6 9 L7 12
+                   L4 13 L4 15
+                   L7 16 L6 19 L8 19 L9 17 L14 16
+                   L13 24 L15 24 L18 16 Z"
+                fill="${color}"/>
         </g>
       </svg>`;
 
