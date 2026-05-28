@@ -23,37 +23,21 @@ function initMap() {
 function planeIcon(heading, airborne, category) {
   const color = airborne ? '#39d353' : '#6b7280';
   const shadow = airborne ? '0 0 7px rgba(57,211,83,.85)' : 'none';
-  const rot = (heading || 0) + (category === 'helicopter' ? 0 : -90);
+  const rot = heading || 0; // both SVGs point north
 
-  // Airplane: nose → right (east) in SVG, rot adjusts to heading
-  // Helicopter: nose → up (north) in SVG, rot adjusts to heading
   const shape = category === 'helicopter'
     ? `<svg viewBox="0 0 32 32" width="32" height="32">
         <g transform="rotate(${rot},16,16)">
-          <!-- main rotor -->
-          <rect x="2" y="14" width="28" height="3" rx="1.5" fill="${color}"/>
-          <!-- rotor hub -->
-          <circle cx="16" cy="15.5" r="2.5" fill="${color}"/>
-          <!-- cabin -->
-          <ellipse cx="16" cy="21" rx="5" ry="6" fill="${color}"/>
-          <!-- tail boom -->
-          <rect x="14.5" y="26" width="3" height="4" rx="1" fill="${color}"/>
-          <!-- tail rotor -->
-          <rect x="11" y="29" width="10" height="2.5" rx="1.2" fill="${color}"/>
+          <rect x="4" y="14" width="24" height="2.5" rx="1.2" fill="${color}"/>
+          <circle cx="16" cy="15.2" r="2.2" fill="${color}"/>
+          <ellipse cx="16" cy="21" rx="4.5" ry="6.5" fill="${color}"/>
+          <rect x="11.5" y="26.5" width="9" height="2.2" rx="1.1" fill="${color}"/>
         </g>
       </svg>`
     : `<svg viewBox="0 0 32 32" width="32" height="32">
         <g transform="rotate(${rot},16,16)">
-          <!-- fuselage -->
-          <ellipse cx="16" cy="16" rx="13" ry="2.2" fill="${color}"/>
-          <!-- port wing (up in SVG) -->
-          <path d="M17 13.8 L21 13.8 L27 6 L23 6 Z" fill="${color}"/>
-          <!-- starboard wing (down in SVG) -->
-          <path d="M17 18.2 L21 18.2 L27 26 L23 26 Z" fill="${color}"/>
-          <!-- port tail fin -->
-          <path d="M5 14.5 L3 11 L8 13.5 Z" fill="${color}"/>
-          <!-- starboard tail fin -->
-          <path d="M5 17.5 L3 21 L8 18.5 Z" fill="${color}"/>
+          <path d="M16 2 L18 10 L30 14 L30 16 L18 14 L18.5 22 L22 24 L22 26 L16 24.5 L10 26 L10 24 L13.5 22 L14 14 L2 16 L2 14 L14 10 Z"
+                fill="${color}"/>
         </g>
       </svg>`;
 
