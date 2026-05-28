@@ -28,10 +28,11 @@ function planeIcon(heading, airborne, category) {
   const shape = category === 'helicopter'
     ? `<svg viewBox="0 0 28 28" width="28" height="28">
         <g transform="rotate(${rot},14,14)">
-          <rect x="2" y="12" width="24" height="2.5" rx="1.2" fill="${color}"/>
-          <ellipse cx="14" cy="16" rx="5" ry="4" fill="${color}"/>
-          <path d="M19 16 Q24 18 26 22" stroke="${color}" stroke-width="2" fill="none"/>
-          <rect x="24" y="20" width="3" height="1.5" rx=".7" fill="${color}"/>
+          <rect x="3" y="12.5" width="22" height="2.5" rx="1.2" fill="${color}"/>
+          <circle cx="14" cy="13.8" r="2" fill="${color}"/>
+          <ellipse cx="14" cy="18" rx="4" ry="5.5" fill="${color}"/>
+          <rect x="13" y="22" width="2.5" height="4.5" rx="1" fill="${color}"/>
+          <rect x="10" y="25.5" width="8" height="2" rx="1" fill="${color}"/>
         </g>
       </svg>`
     : `<svg viewBox="0 0 32 32" width="32" height="32">
