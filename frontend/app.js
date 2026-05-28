@@ -25,35 +25,43 @@ function planeIcon(heading, airborne, category) {
   const shadow = airborne ? '0 0 7px rgba(57,211,83,.85)' : 'none';
   const rot = (heading || 0) + (category === 'helicopter' ? 0 : -90);
 
-  // Airplane: nose points east in SVG → rotated to heading
-  // Helicopter: nose points north in SVG → rotated to heading
+  // Airplane: nose → right (east) in SVG, rot adjusts to heading
+  // Helicopter: nose → up (north) in SVG, rot adjusts to heading
   const shape = category === 'helicopter'
-    ? `<svg viewBox="0 0 28 28" width="28" height="28">
-        <g transform="rotate(${rot},14,14)">
-          <rect x="3" y="12.5" width="22" height="2.5" rx="1.2" fill="${color}"/>
-          <circle cx="14" cy="13.8" r="2" fill="${color}"/>
-          <ellipse cx="14" cy="18" rx="4" ry="5.5" fill="${color}"/>
-          <rect x="13" y="22" width="2.5" height="4.5" rx="1" fill="${color}"/>
-          <rect x="10" y="25.5" width="8" height="2" rx="1" fill="${color}"/>
+    ? `<svg viewBox="0 0 32 32" width="32" height="32">
+        <g transform="rotate(${rot},16,16)">
+          <!-- main rotor -->
+          <rect x="2" y="14" width="28" height="3" rx="1.5" fill="${color}"/>
+          <!-- rotor hub -->
+          <circle cx="16" cy="15.5" r="2.5" fill="${color}"/>
+          <!-- cabin -->
+          <ellipse cx="16" cy="21" rx="5" ry="6" fill="${color}"/>
+          <!-- tail boom -->
+          <rect x="14.5" y="26" width="3" height="4" rx="1" fill="${color}"/>
+          <!-- tail rotor -->
+          <rect x="11" y="29" width="10" height="2.5" rx="1.2" fill="${color}"/>
         </g>
       </svg>`
-    : `<svg viewBox="0 0 28 28" width="28" height="28">
-        <g transform="rotate(${rot},14,14)">
-          <path d="M23 14
-                   L18 12 L15 4 L13 4 L14 12
-                   L9 11 L8 9 L6 9 L7 12
-                   L4 13 L4 15
-                   L7 16 L6 19 L8 19 L9 17 L14 16
-                   L13 24 L15 24 L18 16 Z"
-                fill="${color}"/>
+    : `<svg viewBox="0 0 32 32" width="32" height="32">
+        <g transform="rotate(${rot},16,16)">
+          <!-- fuselage -->
+          <ellipse cx="16" cy="16" rx="13" ry="2.2" fill="${color}"/>
+          <!-- port wing (up in SVG) -->
+          <path d="M17 13.8 L21 13.8 L27 6 L23 6 Z" fill="${color}"/>
+          <!-- starboard wing (down in SVG) -->
+          <path d="M17 18.2 L21 18.2 L27 26 L23 26 Z" fill="${color}"/>
+          <!-- port tail fin -->
+          <path d="M5 14.5 L3 11 L8 13.5 Z" fill="${color}"/>
+          <!-- starboard tail fin -->
+          <path d="M5 17.5 L3 21 L8 18.5 Z" fill="${color}"/>
         </g>
       </svg>`;
 
   return L.divIcon({
     html: `<div style="filter:drop-shadow(${shadow})">${shape}</div>`,
     className: '',
-    iconSize: [28, 28],
-    iconAnchor: [14, 14],
+    iconSize: [32, 32],
+    iconAnchor: [16, 16],
   });
 }
 
