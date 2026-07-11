@@ -5,6 +5,7 @@ from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy import desc
 from sqlalchemy.orm import Session
 
+from airports import city_name
 from database import SessionLocal
 from models import Aircraft, Flight, Position
 
@@ -102,6 +103,8 @@ def list_flights(
                 ),
                 "departure_airport": f.departure_airport,
                 "arrival_airport": f.arrival_airport,
+                "departure_city": city_name(f.departure_airport),
+                "arrival_city": city_name(f.arrival_airport),
                 "aircraft": {
                     "icao_hex": f.aircraft.icao_hex,
                     "registration": f.aircraft.registration,
@@ -136,6 +139,8 @@ def get_flight_track(flight_id: int, db: Session = Depends(get_db)):
             "is_active": flight.is_active,
             "departure_airport": flight.departure_airport,
             "arrival_airport": flight.arrival_airport,
+            "departure_city": city_name(flight.departure_airport),
+            "arrival_city": city_name(flight.arrival_airport),
             "aircraft": {
                 "icao_hex": flight.aircraft.icao_hex,
                 "registration": flight.aircraft.registration,

@@ -3,48 +3,114 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Kam letí Fico? Live tracking vládnych špeciálov SR | kamletifico.sk</title>
-  <meta name="description" content="Sledujte v reálnom čase kam letí Fico a vládne špeciály SR. Live tracking zahraničných ciest premiéra, ministrov a vládnych lietadiel Slovenskej republiky — Airbus A319, Fokker 100, Bombardier Global 5000.">
-  <meta name="keywords" content="kam letí Fico, lety vládnych špeciálov SR, zahraničné cesty Fico, zahraničné cesty ministrov SR, sledovanie vládnych lietadiel, vládne špeciály Slovensko, live tracking vládnych lietadiel, Letecký útvar MV SR, Fokker 100, Airbus A319 CJ, Bombardier Global 5000, vládne lietadlá slovensko, Robert Fico lietadlo, premier slovensko cestovanie">
+  <title>Kam letí Fico? Lety vládnych špeciálov SR naživo | kamletifico.sk</title>
+  <meta name="description" content="Kam letí Fico? Sledujte naživo lety vládnych špeciálov SR a zahraničné cesty premiéra a ministrov. História letov, mapa a trasy vládnych lietadiel.">
   <meta name="author" content="kamletifico.sk">
   <meta name='admaven-placement' content='BqjgGrTaE'>
   <meta name="monetag" content="3b730dc44d54f9cf5defee64bf375a5c">
-  <link rel="canonical" href="https://kamletifico.sk">
+  <link rel="canonical" href="https://kamletifico.sk/">
   <meta name="theme-color" content="#0d1117">
   <link rel="icon" type="image/svg+xml" href="/favicon.svg">
   <link rel="shortcut icon" href="/favicon.svg">
 
+  <!-- Resource hints -->
+  <link rel="preconnect" href="https://unpkg.com">
+  <link rel="preconnect" href="https://a.basemaps.cartocdn.com">
+  <link rel="preconnect" href="https://b.basemaps.cartocdn.com">
+  <link rel="dns-prefetch" href="https://c.basemaps.cartocdn.com">
+  <link rel="dns-prefetch" href="https://t.plnspttrs.net">
+  <link rel="dns-prefetch" href="https://cdn.plnspttrs.net">
+  <link rel="dns-prefetch" href="https://cdn.buymeacoffee.com">
+  <link rel="dns-prefetch" href="https://www.paypalobjects.com">
+
   <!-- Open Graph -->
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://kamletifico.sk">
-  <meta property="og:title" content="Kam letí Fico? Live tracking vládnych špeciálov SR">
+  <meta property="og:url" content="https://kamletifico.sk/">
+  <meta property="og:title" content="Kam letí Fico? Lety vládnych špeciálov SR naživo">
   <meta property="og:description" content="Sledujte v reálnom čase kam letí Fico a vládne špeciály SR. Live tracking zahraničných ciest premiéra a ministrov Slovenskej republiky.">
+  <meta property="og:image" content="https://kamletifico.sk/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="Kam letí Fico? Live mapa vládnych špeciálov SR">
   <meta property="og:locale" content="sk_SK">
   <meta property="og:site_name" content="kamletifico.sk">
 
   <!-- Twitter Card -->
-  <meta name="twitter:card" content="summary">
-  <meta name="twitter:title" content="Kam letí Fico? Live tracking vládnych špeciálov SR">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Kam letí Fico? Lety vládnych špeciálov SR naživo">
   <meta name="twitter:description" content="Sledujte v reálnom čase kam letí Fico a vládne špeciály SR. Live tracking zahraničných ciest premiéra a ministrov.">
+  <meta name="twitter:image" content="https://kamletifico.sk/og-image.png">
 
   <!-- JSON-LD štruktúrované dáta -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "kamletifico.sk",
-    "url": "https://kamletifico.sk",
-    "description": "Live tracking vládnych špeciálov Slovenskej republiky. Sledujte kam letí Fico a ďalší členovia vlády SR v reálnom čase.",
-    "applicationCategory": "UtilityApplication",
-    "operatingSystem": "Web",
-    "inLanguage": "sk",
-    "about": {
-      "@type": "Thing",
-      "name": "Vládne lietadlá Slovenskej republiky",
-      "description": "Lety vládnych špeciálov SR — zahraničné cesty premiéra Roberta Fica, ministrov a ostatných vládnych predstaviteľov"
-    }
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "Kam letí Fico",
+        "alternateName": "kamletifico.sk",
+        "url": "https://kamletifico.sk/",
+        "inLanguage": "sk",
+        "publisher": {
+          "@type": "Organization",
+          "name": "kamletifico.sk",
+          "url": "https://kamletifico.sk/",
+          "logo": "https://kamletifico.sk/favicon.svg"
+        }
+      },
+      {
+        "@type": "WebApplication",
+        "name": "kamletifico.sk",
+        "url": "https://kamletifico.sk/",
+        "image": "https://kamletifico.sk/og-image.png",
+        "description": "Live tracking vládnych špeciálov Slovenskej republiky. Sledujte kam letí Fico a ďalší členovia vlády SR v reálnom čase.",
+        "applicationCategory": "UtilityApplication",
+        "operatingSystem": "Web",
+        "inLanguage": "sk",
+        "offers": { "@type": "Offer", "price": "0", "priceCurrency": "EUR" },
+        "about": {
+          "@type": "Thing",
+          "name": "Vládne lietadlá Slovenskej republiky",
+          "description": "Lety vládnych špeciálov SR — zahraničné cesty premiéra Roberta Fica, ministrov a ostatných vládnych predstaviteľov"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Kam letel Fico dnes?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Pozrite históriu letov na kamletifico.sk — nové lety vládnych špeciálov sa zaznamenávajú automaticky a poloha sa aktualizuje každých 30 sekúnd." }
+          },
+          {
+            "@type": "Question",
+            "name": "Prečo vládne lety nevidno na Flightradar24?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Vláda SR požiadala FlightAware a Flightradar24 o utajenie a odstránenie letov vládnych špeciálov. Táto stránka ich sleduje cez otvorené ADS-B dáta." }
+          },
+          {
+            "@type": "Question",
+            "name": "Aké lietadlá má vládna letka SR?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Dva Airbusy A319 CJ (OM-BYA, OM-BYK), Fokker 100 (OM-BYB), dva Bombardiery Global 5000 (9513, 9633), vrtuľníky Bell 429 (OM-BYD) a AgustaWestland AW189 (OM-BYW)." }
+          },
+          {
+            "@type": "Question",
+            "name": "Odkiaľ pochádzajú údaje o letoch?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Z verejnej komunitnej siete ADS-B prijímačov. Údaje majú informatívny charakter." }
+          },
+          {
+            "@type": "Question",
+            "name": "Ako dlho sa uchováva história letov?",
+            "acceptedAnswer": { "@type": "Answer", "text": "Posledných 60 dní pre všetky vládne lietadlá — vrátane trás, časov vzletu a pristátia." }
+          }
+        ]
+      }
+    ]
   }
   </script>
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="style.css">
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-MY01B260QR"></script>
@@ -56,9 +122,6 @@
   </script>
 
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-9279778302363258" crossorigin="anonymous"></script>
-
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="gov-banner">
@@ -72,19 +135,19 @@
         <div id="header-title">
           <span class="header-flag">🇸🇰</span>
           <div>
-            <h1>Vládne lietadlá SR</h1>
+            <h1>Kam letí Fico?</h1>
             <p id="last-update">Načítavam…</p>
           </div>
         </div>
       </div>
 
       <div class="section">
-        <div class="section-title">Sledované lietadlá</div>
+        <h2 class="section-title">Sledované lietadlá</h2>
         <div id="aircraft-list"></div>
       </div>
 
       <div class="section">
-        <div class="section-title">História letov</div>
+        <h2 class="section-title">História letov</h2>
         <div id="acf-wrapper">
           <div id="acf-toggle" onclick="toggleAcFilter()">
             <div id="acf-current">
@@ -97,6 +160,38 @@
         </div>
         <div id="flights-list"></div>
         <button id="load-more" style="display:none">Načítať ďalšie</button>
+      </div>
+
+      <div class="section" id="about-section">
+        <h2 class="section-title">O projekte</h2>
+        <div id="about-text">
+          <h3>Kam letí Fico? Lety vládnych špeciálov SR v reálnom čase</h3>
+          <p>Sledujte naživo zahraničné cesty premiéra Roberta Fica, ministrov a vládnych predstaviteľov Slovenskej republiky. Stránka kamletifico.sk monitoruje vládne špeciály SR nepretržite — Airbus A319 CJ, Fokker 100, Bombardier Global 5000, Bell 429 a AgustaWestland AW189.</p>
+          <p>Vládne lietadlá prevádzkuje Letecký útvar Ministerstva vnútra SR a Vzdušné sily OS SR. Poloha pochádza z verejnej siete ADS-B prijímačov a história letov sa uchováva 60 dní. Nezávislý občiansky projekt — nie je oficiálnou stránkou vlády SR.</p>
+        </div>
+        <div id="faq">
+          <h3 class="faq-title">Časté otázky</h3>
+          <details class="faq-item">
+            <summary>Kam letel Fico dnes?</summary>
+            <p>Pozrite históriu letov vyššie — nové lety vládnych špeciálov sa zaznamenávajú automaticky a poloha sa aktualizuje každých 30 sekúnd.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Prečo vládne lety nevidno na Flightradar24?</summary>
+            <p>Vláda SR požiadala FlightAware a Flightradar24 o utajenie a odstránenie letov vládnych špeciálov. Táto stránka ich sleduje cez otvorené ADS-B dáta.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Aké lietadlá má vládna letka SR?</summary>
+            <p>Dva Airbusy A319 CJ (OM-BYA, OM-BYK), Fokker 100 (OM-BYB), dva Bombardiery Global 5000 (9513, 9633), vrtuľníky Bell 429 (OM-BYD) a AgustaWestland AW189 (OM-BYW).</p>
+          </details>
+          <details class="faq-item">
+            <summary>Odkiaľ pochádzajú údaje o letoch?</summary>
+            <p>Z verejnej komunitnej siete ADS-B prijímačov. Údaje majú informatívny charakter.</p>
+          </details>
+          <details class="faq-item">
+            <summary>Ako dlho sa uchováva história letov?</summary>
+            <p>Posledných 60 dní pre všetky vládne lietadlá — vrátane trás, časov vzletu a pristátia.</p>
+          </details>
+        </div>
       </div>
     </div>
 
@@ -175,16 +270,8 @@
     </div>
   </div>
 
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-  <script src="app.js"></script>
-
-  <div id="seo-text" style="position:absolute;width:1px;height:1px;overflow:hidden;opacity:0;pointer-events:none" aria-hidden="true">
-    <h2>Kam letí Fico? Lety vládnych špeciálov SR v reálnom čase</h2>
-    <p>Sledujte live tracking zahraničných ciest premiéra Roberta Fica, ministrov a vládnych predstaviteľov Slovenskej republiky. Stránka kamletifico.sk monitoruje vládne špeciály SR 24/7 — Airbus A319 CJ, Fokker 100, Bombardier Global 5000, Bell 429 a AgustaWestland AW189.</p>
-    <p>Vládne lietadlá SR prevádzkuje Letecký útvar Ministerstva vnútra SR a Ministerstvo obrany SR. Zahraničné cesty premiéra a ministrov sú verejne dostupné cez ADS-B sledovanie.</p>
-    <h3>História letov vládnych špeciálov Slovenska</h3>
-    <p>Kompletná história letov vládnych lietadiel Slovenska za posledných 60 dní. Zistite, kde bol vládny špeciál, odkiaľ letel a kam pristál.</p>
-  </div>
+  <script defer src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script defer src="app.js"></script>
 </body>
 
 </html>

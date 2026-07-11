@@ -154,6 +154,10 @@ function fmtDur(min) {
   const h = Math.floor(min / 60), m = min % 60;
   return h ? `${h}h ${m}min` : `${m}min`;
 }
+function fmtAirport(code, city) {
+  if (!code) return '';
+  return city ? `${city} (${code})` : code;
+}
 
 function renderFlights(flights, append) {
   const el = document.getElementById('flights-list');
@@ -168,9 +172,11 @@ function renderFlights(flights, append) {
     const div = document.createElement('div');
     div.className = `fl-item${f.is_active ? ' active-flight' : ''}${f.id === selectedFlightId ? ' selected' : ''}`;
     div.dataset.id = f.id;
-    const route = (f.departure_airport && f.arrival_airport)
-      ? `<span class="fl-route">${f.departure_airport} → ${f.arrival_airport}</span>`
-      : (f.departure_airport ? `<span class="fl-route">${f.departure_airport} →</span>` : '');
+    const dep = fmtAirport(f.departure_airport, f.departure_city);
+    const arr = fmtAirport(f.arrival_airport, f.arrival_city);
+    const route = (dep && arr)
+      ? `<span class="fl-route">${dep} → ${arr}</span>`
+      : (dep ? `<span class="fl-route">${dep} →</span>` : '');
     const acLabel = list_aircraft_cache.find(a => a.icao_hex === f.aircraft.icao_hex)?.label || f.aircraft.registration || f.aircraft.icao_hex;
     const reg = f.aircraft.registration || f.aircraft.icao_hex;
     div.innerHTML = `
@@ -253,12 +259,15 @@ async function loadTrack(id) {
   const photoHtml = ac?.photo_url
     ? `<img src="${ac.photo_url}" style="width:100%;border-radius:6px;margin-bottom:10px;object-fit:cover;max-height:80px" loading="lazy">`
     : '';
+  const cities = (f.departure_city || f.arrival_city)
+    ? `<div class="fp-route-cities">${f.departure_city || '?'} → ${f.arrival_city || '?'}</div>`
+    : '';
   const routeHtml = (f.departure_airport || f.arrival_airport)
     ? `<div class="fp-route-row">
         <span class="fp-airport">${f.departure_airport || '?'}</span>
         <span class="fp-route-arrow">✈</span>
         <span class="fp-airport">${f.arrival_airport || '?'}</span>
-       </div>`
+       </div>${cities}`
     : '';
   document.getElementById('flight-panel-body').innerHTML = `
     ${photoHtml}
