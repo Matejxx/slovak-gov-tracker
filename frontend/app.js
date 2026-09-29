@@ -15,7 +15,7 @@ function initMap() {
   L.control.zoom({ position: 'bottomright' }).addTo(map);
 
   L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+    attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors · ADS-B: <a href="https://adsb.lol">adsb.lol</a> (ODbL)',
     maxZoom: 19,
   }).addTo(map);
 }

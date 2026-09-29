@@ -74,6 +74,20 @@ AIRCRAFT_CONFIG = [
 POLL_INTERVAL = 30       # seconds between polls
 STALE_FLIGHT_MIN = 15    # minutes without signal before closing a flight
 
+# readsb v2 JSON providers, tried in order; the next one is used only when
+# the previous returns an HTTP/network error (an empty "ac" list is a valid
+# "not visible" answer). airplanes.live was dropped: 403 for all since 8/2026.
+# {hex} is a comma-separated list — one request per poll for the whole fleet,
+# since both providers rate-limit (429) bursts of per-aircraft requests.
+ADSB_PROVIDERS = [
+    "https://api.adsb.lol/v2/icao/{hex}",
+    "https://opendata.adsb.fi/api/v2/hex/{hex}",
+]
+# adsb.lol rejects generic User-Agents with 403 and requires contact info.
+HTTP_HEADERS = {
+    "User-Agent": "kamletifico.sk/1.0 (+https://kamletifico.sk; online.easysolutions@gmail.com)",
+}
+
 
 def seed_aircraft(db: Session):
     for cfg in AIRCRAFT_CONFIG:
@@ -86,21 +100,26 @@ def seed_aircraft(db: Session):
     db.commit()
 
 
-async def fetch_one(client: httpx.AsyncClient, icao_hex: str) -> Optional[dict]:
-    try:
-        r = await client.get(f"https://api.airplanes.live/v2/icao/{icao_hex}")
-        r.raise_for_status()
-        data = r.json()
-        ac = data.get("ac")
-        if ac:
-            entry = ac[0]
-            # skip if data is stale (seen > 120 s)
-            if entry.get("seen", 0) > 120:
-                return None
-            return entry
-    except Exception as e:
-        logger.warning("Fetch error %s: %s", icao_hex, e)
-    return None
+async def fetch_all(client: httpx.AsyncClient, icao_hexes: list) -> dict:
+    """Return {icao_hex: readsb entry} for the aircraft currently visible."""
+    joined = ",".join(icao_hexes)
+    for url in ADSB_PROVIDERS:
+        url = url.format(hex=joined)
+        try:
+            r = await client.get(url)
+            r.raise_for_status()
+            ac = r.json().get("ac") or []
+        except Exception as e:
+            logger.warning("Fetch error %s: %s", url.split("/")[2], e)
+            continue
+        # skip stale entries (seen > 120 s)
+        return {
+            e["hex"].lower(): e
+            for e in ac
+            if e.get("hex") and e.get("seen", 0) <= 120
+        }
+    logger.error("All ADS-B providers failed")
+    return {}
 
 
 def _safe_int(val) -> Optional[int]:
@@ -197,16 +216,14 @@ def close_stale_flights(db: Session):
 
 
 async def poll_once():
-    async with httpx.AsyncClient(timeout=10) as client:
+    async with httpx.AsyncClient(timeout=10, headers=HTTP_HEADERS) as client:
         db = SessionLocal()
         try:
             aircraft_list = db.query(Aircraft).all()
-            results = await asyncio.gather(
-                *[fetch_one(client, a.icao_hex) for a in aircraft_list],
-                return_exceptions=True,
-            )
-            for aircraft, result in zip(aircraft_list, results):
-                if isinstance(result, Exception) or result is None:
+            seen = await fetch_all(client, [a.icao_hex for a in aircraft_list])
+            for aircraft in aircraft_list:
+                result = seen.get(aircraft.icao_hex.lower())
+                if result is None:
                     continue
                 await asyncio.to_thread(process_position, db, aircraft, result)
             await asyncio.to_thread(close_stale_flights, db)
