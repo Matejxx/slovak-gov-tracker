@@ -90,9 +90,7 @@ async def seo_middleware(request, call_next):
     response = await call_next(request)
 
     response.headers["Strict-Transport-Security"] = "max-age=31536000"
-    if path.endswith((".js", ".css")):
-        response.headers["Cache-Control"] = "public, max-age=3600, stale-while-revalidate=86400"
-    elif path.endswith((".svg", ".png", ".jpg", ".ico")):
+    if path.endswith((".svg", ".png", ".jpg", ".ico")):
         response.headers["Cache-Control"] = "public, max-age=86400"
     elif not path.startswith("/api"):
         response.headers["Cache-Control"] = "no-cache"
